@@ -1,6 +1,6 @@
-package dev.patika.vetmanagament.dao;
+package dev.patika.vetmanagement.dao;
 
-import dev.patika.vetmanagament.entities.Doctor;
+import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
