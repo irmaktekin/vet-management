@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament.dto.request.doctor;
+package dev.patika.vetmanagement.dto.request.doctor;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament;
+package dev.patika.vetmanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,17 +1,15 @@
-package dev.patika.vetmanagament.api;
+package dev.patika.vetmanagement.api;
 
-import dev.patika.vetmanagament.business.abstracts.IDoctorService;
-import dev.patika.vetmanagament.core.config.ModelMapper.IModelMapperService;
-import dev.patika.vetmanagament.core.result.Result;
-import dev.patika.vetmanagament.core.result.ResultData;
-import dev.patika.vetmanagament.core.utilities.ResultHelper;
-import dev.patika.vetmanagament.dto.request.doctor.DoctorSaveRequest;
-import dev.patika.vetmanagament.dto.response.CursorResponse;
-import dev.patika.vetmanagament.dto.response.DoctorResponse;
-import dev.patika.vetmanagament.entities.AvailableDate;
-import dev.patika.vetmanagament.entities.Doctor;
+import dev.patika.vetmanagement.business.abstracts.IDoctorService;
+import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
+import dev.patika.vetmanagement.core.result.Result;
+import dev.patika.vetmanagement.core.result.ResultData;
+import dev.patika.vetmanagement.core.utilities.ResultHelper;
+import dev.patika.vetmanagement.dto.request.doctor.DoctorSaveRequest;
+import dev.patika.vetmanagement.dto.response.CursorResponse;
+import dev.patika.vetmanagement.dto.response.doctor.DoctorResponse;
+import dev.patika.vetmanagement.entities.Doctor;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

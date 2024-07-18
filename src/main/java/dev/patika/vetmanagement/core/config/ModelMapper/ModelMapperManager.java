@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament.core.config.ModelMapper;
+package dev.patika.vetmanagement.core.config.ModelMapper;
 
 
 import org.modelmapper.ModelMapper;

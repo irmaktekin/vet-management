@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament.core.result;
+package dev.patika.vetmanagement.core.result;
 
 
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament.dto.response;
+package dev.patika.vetmanagement.dto.response;
 
 
 import lombok.AllArgsConstructor;

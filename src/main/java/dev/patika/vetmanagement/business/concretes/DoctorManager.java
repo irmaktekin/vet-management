@@ -1,8 +1,8 @@
-package dev.patika.vetmanagament.business.concretes;
+package dev.patika.vetmanagement.business.concretes;
 
-import dev.patika.vetmanagament.business.abstracts.IDoctorService;
-import dev.patika.vetmanagament.dao.DoctorRepo;
-import dev.patika.vetmanagament.entities.Doctor;
+import dev.patika.vetmanagement.business.abstracts.IDoctorService;
+import dev.patika.vetmanagement.dao.DoctorRepo;
+import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

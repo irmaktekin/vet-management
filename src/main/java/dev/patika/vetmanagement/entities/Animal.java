@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament.entities;
+package dev.patika.vetmanagement.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

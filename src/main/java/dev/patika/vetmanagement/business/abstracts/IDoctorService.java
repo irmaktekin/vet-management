@@ -1,8 +1,7 @@
-package dev.patika.vetmanagament.business.abstracts;
+package dev.patika.vetmanagement.business.abstracts;
 
-import dev.patika.vetmanagament.entities.Doctor;
+import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 
 
 public interface IDoctorService {

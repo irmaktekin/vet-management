@@ -1,4 +1,4 @@
-package dev.patika.vetmanagament.core.utilities;
+package dev.patika.vetmanagement.core.utilities;
 
 public class Message {
     public static final String CREATED = "Data is created";
