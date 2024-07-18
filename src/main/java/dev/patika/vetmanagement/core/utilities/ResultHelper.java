@@ -1,5 +1,4 @@
 package dev.patika.vetmanagement.core.utilities;
-
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.dto.response.CursorResponse;
