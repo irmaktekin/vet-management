@@ -1,5 +1,4 @@
 package dev.patika.vetmanagement.api;
-
 import dev.patika.vetmanagement.business.abstracts.IDoctorService;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
 import dev.patika.vetmanagement.core.result.Result;
