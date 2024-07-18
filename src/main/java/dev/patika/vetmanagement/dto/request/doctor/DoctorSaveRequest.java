@@ -13,4 +13,5 @@ public class DoctorSaveRequest {
     private String mail;
     private String address;
     private String city;
+    
 }
