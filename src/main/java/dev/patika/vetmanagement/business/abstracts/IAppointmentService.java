@@ -9,3 +9,4 @@ public interface IAppointmentService {
     Appointment get(long id);
     boolean delete(int id);
 }
+
