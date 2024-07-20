@@ -16,13 +16,11 @@ public class Doctor {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="doctor_id")
     private Long id;
-
     @NotNull
     private String name;
-    private String phone;
-
     @Email
     private String mail;
+    private String phone;
     private String address;
     private String city;
 
@@ -33,4 +31,10 @@ public class Doctor {
             inverseJoinColumns = { @JoinColumn(name = "date_id") }
     )
     private Set<AvailableDate> availableDates = new HashSet<>();
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Animal> animals = new HashSet<>();
+
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Appointment> appointments = new HashSet<>();
 }
