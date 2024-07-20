@@ -2,11 +2,14 @@ package dev.patika.vetmanagement.business.concretes;
 
 import dev.patika.vetmanagement.business.abstracts.ICustomerService;
 import dev.patika.vetmanagement.dao.CustomerRepo;
+import dev.patika.vetmanagement.entities.Animal;
 import dev.patika.vetmanagement.entities.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ICustomerManager implements ICustomerService {
@@ -35,6 +38,12 @@ public class ICustomerManager implements ICustomerService {
     @Override
     public boolean delete(int id) {
         Customer customer = this.get(id);
+        this.customerRepo.delete(customer);
         return true;
+    }
+
+    @Override
+    public List<Customer> findByName(String name) {
+        return this.customerRepo.findByName(name);
     }
 }
