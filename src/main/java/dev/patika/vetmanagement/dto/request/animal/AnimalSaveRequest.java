@@ -1,9 +1,7 @@
 package dev.patika.vetmanagement.dto.request.animal;
 
 import dev.patika.vetmanagement.entities.Vaccine;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -12,6 +10,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class AnimalSaveRequest {
     private String name;
 
@@ -24,7 +24,7 @@ public class AnimalSaveRequest {
     private String colour;
 
     private LocalDate dateOfBirth;
-    private Set<Vaccine> vaccines = new HashSet<>();
+    private Set<Long> vaccines = new HashSet<>();
     private Long customerId;
     private Long doctorId;
 }
