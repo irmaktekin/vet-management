@@ -4,6 +4,8 @@ import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.dto.response.CursorResponse;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public class ResultHelper {
     public static <T> ResultData<T> created(T data){
         return new ResultData<>(Message.CREATED,"201",true,data);
@@ -12,6 +14,7 @@ public class ResultHelper {
         return new ResultData<>(Message.VALIDATE_ERROR,"404",false,data);
     }
     public static <T> ResultData<T> success(T data){
+
         return new ResultData<>(Message.OK,"200",true,data);
     }
     public static Result ok(){
@@ -27,5 +30,8 @@ public class ResultHelper {
         cursor.setPageSize(pageData.getSize());
         cursor.setTotalElements(pageData.getTotalElements());
         return ResultHelper.success(cursor);
+    }
+    public static <T> ResultData<List<T>> successList(List<T> data) {
+        return new ResultData<>(Message.OK, "200", true, data);
     }
 }
