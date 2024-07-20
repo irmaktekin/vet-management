@@ -8,11 +8,14 @@ import dev.patika.vetmanagement.dto.request.availabledate.AvailableDateSaveReque
 import dev.patika.vetmanagement.dto.request.customer.CustomerSaveRequest;
 import dev.patika.vetmanagement.dto.response.availabledate.AvailableDateResponse;
 import dev.patika.vetmanagement.dto.response.customer.CustomerSaveResponse;
+import dev.patika.vetmanagement.entities.Animal;
 import dev.patika.vetmanagement.entities.AvailableDate;
 import dev.patika.vetmanagement.entities.Customer;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/customers")
@@ -35,6 +38,11 @@ public class CustomerController {
         return ResultHelper.created(this.iModelMapperService.forResponse().map(customer, CustomerSaveResponse.class));
 
 
+    }
+    //Filter by name
+    @GetMapping("/filterByName")
+    public List<Customer> filterByName(@RequestParam String name) {
+        return iCustomerService.findByName(name);
     }
 
 }
