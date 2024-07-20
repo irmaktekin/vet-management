@@ -24,6 +24,12 @@ public class IAppointmentManager implements IAppointmentService {
     }
 
     @Override
+    public Appointment update(Appointment appointment) {
+        this.get(appointment.getId());
+        return this.appointmentRepo.save(appointment);
+    }
+
+    @Override
     public Page<Appointment> cursor(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page,pageSize);
         return this.appointmentRepo.findAll(pageable);

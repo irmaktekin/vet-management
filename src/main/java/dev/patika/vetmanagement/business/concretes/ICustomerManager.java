@@ -25,6 +25,12 @@ public class ICustomerManager implements ICustomerService {
     }
 
     @Override
+    public Customer update(Customer customer) {
+        this.get(customer.getId());
+        return this.customerRepo.save(customer);
+    }
+
+    @Override
     public Page<Customer> cursor(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page,pageSize);
         return this.customerRepo.findAll(pageable);
