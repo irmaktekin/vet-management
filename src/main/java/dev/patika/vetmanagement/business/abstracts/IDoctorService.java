@@ -4,7 +4,7 @@ import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.domain.Page;
 
 public interface IDoctorService {
-    Doctor save(Doctor category);
+    Doctor save(Doctor doctor);
     Page<Doctor> cursor (int page, int pageSize);
     Doctor get(long id);
     boolean delete(int id);
