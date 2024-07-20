@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface IAnimalService {
     Animal save(Animal animal);
+    Animal update(Animal animal);
     Page<Animal> cursor (int page, int pageSize);
     Animal get(long id);
     boolean delete(int id);
