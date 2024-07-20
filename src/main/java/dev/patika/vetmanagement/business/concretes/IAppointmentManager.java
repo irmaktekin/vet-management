@@ -37,6 +37,7 @@ public class IAppointmentManager implements IAppointmentService {
     @Override
     public boolean delete(int id) {
         Appointment appointment = this.get(id);
+        this.appointmentRepo.delete(appointment);
         return true;
     }
 }
