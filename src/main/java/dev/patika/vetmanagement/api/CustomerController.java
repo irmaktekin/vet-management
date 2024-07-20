@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/customers")
 
 public class CustomerController {
-    IModelMapperService iModelMapperService;
-    ICustomerService iCustomerService;
+    private final IModelMapperService iModelMapperService;
+    private final ICustomerService iCustomerService;
+
+    public CustomerController(IModelMapperService iModelMapperService, ICustomerService iCustomerService) {
+        this.iModelMapperService = iModelMapperService;
+        this.iCustomerService = iCustomerService;
+    }
 
     //Add customer
     @PostMapping()
