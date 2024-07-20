@@ -1,7 +1,9 @@
 package dev.patika.vetmanagement.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -10,6 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name="animal")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Animal {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -39,7 +43,7 @@ public class Animal {
             inverseJoinColumns = @JoinColumn(name = "vaccine_id")
     )
     private Set<Vaccine> vaccines = new HashSet<>();
-    
+
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
