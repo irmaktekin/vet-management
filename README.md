@@ -48,6 +48,53 @@ VACCINE CONTROLLER
 
 -Deletes vaccine by id.
 
+---------Customer Controller
+
+![image](https://github.com/user-attachments/assets/919f670a-c5c4-427d-8f17-9623332985ec)
+
+-Gets all the customers with pagination.
+
+![image](https://github.com/user-attachments/assets/016d9379-6ac8-40b3-9bd8-a863625c7c8c)
+
+-Update specific customer's information by id.
+
+
+![image](https://github.com/user-attachments/assets/031c5d52-7a0a-4661-91cd-69f7a73ba0fe)
+
+-Creates new customer with related fields.
+
+![image](https://github.com/user-attachments/assets/f60c898b-73fb-4b73-a968-27d0432ee142)
+
+-Filter customers according to the customer name.
+
+![image](https://github.com/user-attachments/assets/0feb04a3-5128-4681-939b-972d09531539)
+
+-Delete specific customer by id.
+------------AVAILABLE DATE CONTROLLER--------
+
+![image](https://github.com/user-attachments/assets/08cf1273-a611-4990-a1e8-7639194bf14d)
+
+--Gets all available dates with pagination.
+
+![image](https://github.com/user-attachments/assets/16f1122e-0234-497f-a51a-ad7d9a3c4671)
+
+-Update a specific available date's information.
+
+![image](https://github.com/user-attachments/assets/f1c2594d-0f73-423f-bb62-63038de0b519)
+
+-Create a new available date with related fields.
+
+![image](https://github.com/user-attachments/assets/12936acd-b56b-467b-a7b2-5006bd6a046b)
+
+-Delete available date with id.
+
+
+
+
+
+
+
+
 
 
 
