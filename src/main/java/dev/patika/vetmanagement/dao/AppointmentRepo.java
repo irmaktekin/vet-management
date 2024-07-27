@@ -22,5 +22,6 @@ public interface AppointmentRepo extends JpaRepository<Appointment,Integer> {
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate);
     Optional<Appointment> findByDoctorIdAndAppointmentDate(Long doctorId, LocalDateTime appointmentDate);
+    void deleteByDoctorId(int doctorId);
 
 }
