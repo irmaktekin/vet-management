@@ -1,4 +1,4 @@
-### UML DIAGRAM FOR VET MANAGEMENT SYSTEM
+![image](https://github.com/user-attachments/assets/eaf26417-b325-492f-b8c3-033caca17015)### UML DIAGRAM FOR VET MANAGEMENT SYSTEM
 
 ![image](https://github.com/user-attachments/assets/b25cf750-5752-4fe6-ab24-32a3aa6abd7b)
 
@@ -25,7 +25,7 @@ DOCTOR CONTROLLER
 ![image](https://github.com/user-attachments/assets/8cb8747b-9785-4168-a2ca-866098df3f97)
 
 -Deletes the doctor with specific id.
------------------
+
 VACCINE CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/d47cb0f6-ee41-4566-b87f-dab85b7059bf)
@@ -48,7 +48,7 @@ VACCINE CONTROLLER
 
 -Deletes vaccine by id.
 
----------Customer Controller
+CUSTOMER CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/919f670a-c5c4-427d-8f17-9623332985ec)
 
@@ -88,9 +88,7 @@ VACCINE CONTROLLER
 
 -Delete available date with id.
 
-----------APPOINTMENT CONTROLLER---
-
-
+APPOINTMENT CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/ae692097-c141-4f0a-aa5d-2ec6a0a4cbf9)
 
@@ -116,7 +114,7 @@ VACCINE CONTROLLER
 
 -Delete the appointment by id.
 
---ANIMAL CONTROLLER
+ANIMAL CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/81e529db-c492-4f0b-89dc-5b855eeb4176)
 
@@ -140,14 +138,17 @@ VACCINE CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/1f85d311-db89-4614-a879-9491f8087113)
 
--Get all animals which is from a specific customer.
+-Get all animals which is from a specific customer by customer name.
+
+![image](https://github.com/user-attachments/assets/db8ba9cf-8479-4967-b291-98aa8d329482)
+
+-Get animals which is from a specific customer by id.
 
 ![image](https://github.com/user-attachments/assets/65727d66-6a5a-4658-a93d-ad10f3f6d141)
 
 -Delete animal by id.
 
---ANIMALVACCINE CONTROLLER
-
+ANIMALVACCINE CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/b0a54cf1-8833-4be8-bedb-607dd10b5c73)
 
