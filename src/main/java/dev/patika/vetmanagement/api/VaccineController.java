@@ -4,6 +4,7 @@ import dev.patika.vetmanagement.business.abstracts.IAnimalService;
 import dev.patika.vetmanagement.business.abstracts.IVaccineService;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
 import dev.patika.vetmanagement.core.exception.AnimalNotFoundException;
+import dev.patika.vetmanagement.core.exception.NotFoundException;
 import dev.patika.vetmanagement.core.exception.VaccineNotFoundException;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
@@ -54,20 +55,26 @@ public class VaccineController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<VaccineResponse>> get(@PathVariable("id") int animalId){
         // Fetch vaccines by animal ID
-
-        List<Vaccine> vaccines = iVaccineService.findByAnimalId(animalId);
-
-        // Initialize list for VaccineResponse
-        List<VaccineResponse> vaccineResponses = new ArrayList<>();
-
-        // Map each Vaccine to VaccineResponse individually
-        for (Vaccine vaccine : vaccines) {
-            VaccineResponse response = iModelMapperService.forResponse().map(vaccine, VaccineResponse.class);
-            vaccineResponses.add(response);
+            List<Vaccine> vaccines = iVaccineService.findByAnimalId(animalId);
+        if (vaccines.isEmpty()) {
+            throw new NotFoundException("No vaccines found for animal with ID: " + animalId);
         }
+            // Initialize list for VaccineResponse
+            List<VaccineResponse> vaccineResponses = new ArrayList<>();
 
-        // Return the list of VaccineResponse
-        return ResultHelper.successList(vaccineResponses);
+            // Map each Vaccine to VaccineResponse individually
+            for (Vaccine vaccine : vaccines) {
+                VaccineResponse response = iModelMapperService.forResponse().map(vaccine, VaccineResponse.class);
+                vaccineResponses.add(response);
+            }
+
+            // Return the list of VaccineResponse
+            return ResultHelper.successList(vaccineResponses);
+
+
+
+
+
 
     }
 
