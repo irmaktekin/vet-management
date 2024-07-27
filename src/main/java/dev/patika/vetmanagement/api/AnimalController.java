@@ -3,6 +3,7 @@ package dev.patika.vetmanagement.api;
 import dev.patika.vetmanagement.business.abstracts.*;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
 import dev.patika.vetmanagement.core.exception.InvalidGenderException;
+import dev.patika.vetmanagement.core.exception.NotFoundException;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.core.utilities.ResultHelper;
@@ -13,6 +14,7 @@ import dev.patika.vetmanagement.dto.request.doctor.DoctorSaveRequest;
 import dev.patika.vetmanagement.dto.request.vaccineAnimal.VacinneAnimalSaveRequest;
 import dev.patika.vetmanagement.dto.response.CursorResponse;
 import dev.patika.vetmanagement.dto.response.animal.AnimalResponse;
+import dev.patika.vetmanagement.dto.response.customer.CustomerSaveResponse;
 import dev.patika.vetmanagement.dto.response.doctor.DoctorResponse;
 import dev.patika.vetmanagement.entities.*;
 import jakarta.validation.Valid;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/animals")
@@ -88,6 +91,20 @@ public class AnimalController {
     @GetMapping("/customer")
     public List<Animal> filterByCustomerName(@RequestParam String customerName) {
         return iAnimalService.findByCustomerName(customerName);
+    }
+    //Filter by customerId
+    @GetMapping("/customerId")
+    public ResultData<List<AnimalResponse>> filterByCustomeId(@RequestParam Long id) {
+        List<Animal> animals = iAnimalService.findAnimalByCustomerId(id);
+        if(animals.isEmpty()){
+            throw  new NotFoundException("Not Found");
+        }
+        List<AnimalResponse> animalResponses = animals.stream()
+                .map(animal -> this.iModelMapperService.forResponse().map(animal, AnimalResponse.class))
+                .collect(Collectors.toList());
+
+        // Return the mapped response
+        return ResultHelper.success(animalResponses);
     }
 
     @DeleteMapping("/{id}")

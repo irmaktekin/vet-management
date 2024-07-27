@@ -143,10 +143,16 @@ public class AnimalManager implements IAnimalService {
 
             animalVaccineRepository.save(animalVaccine);
         } else {
-            throw new IllegalStateException("The vaccine already exists for the animal and is still active.");
+            throw new NotFoundException("The vaccine already exists for the animal and is still active.");
         }
     }
     public boolean existsById(Long animalId) {
         return animalRepo.existsById(Math.toIntExact(animalId));
+    }
+
+    @Override
+    public List<Animal> findAnimalByCustomerId(Long customerId) {
+        return animalRepo.findByCustomerId(customerId);
+
     }
 }

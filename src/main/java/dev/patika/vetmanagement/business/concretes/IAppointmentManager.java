@@ -34,7 +34,7 @@ public class IAppointmentManager implements IAppointmentService {
     @Override
     public Appointment save(Appointment appointment) {
         if (!AppointmentTimeValidator.isHourAligned(appointment.getAppointmentDate())) {
-            throw new IllegalArgumentException("Appointment time must be at the start of the hour.");
+            throw new NotFoundException("Appointment time must be at the start of the hour.");
         }
 
         // Check if an appointment exists for the given doctor at the given time

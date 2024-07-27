@@ -15,5 +15,6 @@ public interface AnimalRepo extends JpaRepository<Animal,Integer> {
 
     @Query("SELECT a FROM Animal a JOIN a.customer c WHERE c.name = :customerName")
     List<Animal> findByCustomerName(String customerName);
+    List<Animal> findByCustomerId(Long customerId);
 
 }
