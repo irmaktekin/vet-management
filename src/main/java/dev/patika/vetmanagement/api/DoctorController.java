@@ -1,4 +1,5 @@
 package dev.patika.vetmanagement.api;
+import dev.patika.vetmanagement.business.abstracts.IAppointmentService;
 import dev.patika.vetmanagement.business.abstracts.IAvailableDateService;
 import dev.patika.vetmanagement.business.abstracts.IDoctorService;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
@@ -16,6 +17,7 @@ import dev.patika.vetmanagement.dto.response.doctor.DoctorResponse;
 import dev.patika.vetmanagement.entities.Animal;
 import dev.patika.vetmanagement.entities.AvailableDate;
 import dev.patika.vetmanagement.entities.Doctor;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -33,11 +35,13 @@ public class DoctorController {
     private final IDoctorService iDoctorService;
     private final IModelMapperService iModelMapperService;
     private final IAvailableDateService availableDateService;
+    private final IAppointmentService iAppointmentService;
 
-    public DoctorController(IDoctorService iDoctorService, IModelMapperService iModelMapperService, IAvailableDateService availableDateService) {
+    public DoctorController(IDoctorService iDoctorService, IModelMapperService iModelMapperService, IAvailableDateService availableDateService, IAppointmentService iAppointmentService) {
         this.iDoctorService = iDoctorService;
         this.iModelMapperService = iModelMapperService;
         this.availableDateService = availableDateService;
+        this.iAppointmentService = iAppointmentService;
     }
 
     @PostMapping()
@@ -85,6 +89,8 @@ public class DoctorController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Result delete(@PathVariable("id") int id){
+        iAppointmentService.deleteByDoctorId(id);
+
         this.iDoctorService.delete(id);
         return ResultHelper.ok();
     }
