@@ -16,6 +16,7 @@ public interface IAppointmentService {
     boolean delete(int id);
     List<Appointment> findAppointmentsByDoctorAndDateRange(String doctorName, LocalDateTime startDate, LocalDateTime endDate);
     List<Appointment> findAppointmentsByAnimalAndDateRange(String animalName, LocalDateTime startDate, LocalDateTime endDate);
+    void deleteByDoctorId(int doctorId);
 
 }
 
