@@ -9,6 +9,7 @@ import dev.patika.vetmanagement.dao.AppointmentRepo;
 import dev.patika.vetmanagement.entities.Appointment;
 import dev.patika.vetmanagement.entities.Customer;
 import dev.patika.vetmanagement.entities.Doctor;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -102,6 +103,11 @@ public class IAppointmentManager implements IAppointmentService {
             throw new NotFoundException("No appointments found for doctor " + animalName + " between " + startDate + " and " + endDate);
         }
         return appointments;
+    }
+    @Override
+    @Transactional
+    public void deleteByDoctorId(int doctorId) {
+        appointmentRepo.deleteByDoctorId(doctorId);
     }
 
 }
