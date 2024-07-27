@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/eaf26417-b325-492f-b8c3-033caca17015)### UML DIAGRAM FOR VET MANAGEMENT SYSTEM
+### UML DIAGRAM FOR VET MANAGEMENT SYSTEM
 
 ![image](https://github.com/user-attachments/assets/b25cf750-5752-4fe6-ab24-32a3aa6abd7b)
 
@@ -70,7 +70,8 @@ CUSTOMER CONTROLLER
 ![image](https://github.com/user-attachments/assets/0feb04a3-5128-4681-939b-972d09531539)
 
 -Delete specific customer by id.
-------------AVAILABLE DATE CONTROLLER--------
+
+AVAILABLE DATE CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/08cf1273-a611-4990-a1e8-7639194bf14d)
 
