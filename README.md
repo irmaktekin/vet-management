@@ -2,7 +2,7 @@
 
 ![image](https://github.com/user-attachments/assets/b25cf750-5752-4fe6-ab24-32a3aa6abd7b)
 
-##API ENDPOINTS
+## API ENDPOINTS
 
 DOCTOR CONTROLLER
 
