@@ -88,7 +88,33 @@ VACCINE CONTROLLER
 
 -Delete available date with id.
 
+----------APPOINTMENT CONTROLLER---
 
+
+
+![image](https://github.com/user-attachments/assets/ae692097-c141-4f0a-aa5d-2ec6a0a4cbf9)
+
+-Get all appointments with pagination.
+
+![image](https://github.com/user-attachments/assets/cc7aa279-04b5-4e42-824a-f6c1193f3857)
+
+-Update a specific appointment information with id.
+
+![image](https://github.com/user-attachments/assets/eb1ad99b-a321-4cb3-abef-c4c49638778c)
+
+-Create new appointment with a doctor id and a customer id .
+
+![image](https://github.com/user-attachments/assets/f0ab16e9-a5da-4dea-afef-a019810ad1da)
+
+-Gets all appointments from a specific doctor name and between the date parameters.
+
+![image](https://github.com/user-attachments/assets/e7c821fa-97d8-408c-9324-a1f95d2ff061)
+
+--Gets all appointments from a specific animal name and between the date parameters.
+
+![image](https://github.com/user-attachments/assets/da52fcc0-40a2-4df0-af6e-eba2ee230e5f)
+
+-Delete the appointment by id.
 
 
 
