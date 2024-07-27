@@ -116,6 +116,44 @@ VACCINE CONTROLLER
 
 -Delete the appointment by id.
 
+--ANIMAL CONTROLLER
+
+![image](https://github.com/user-attachments/assets/81e529db-c492-4f0b-89dc-5b855eeb4176)
+
+-Gets all animals with pagination.
+
+![image](https://github.com/user-attachments/assets/ad0eda9a-f1ca-45fb-abc1-dc112af3358a)
+
+-Update the specific animal's information with id.
+
+![image](https://github.com/user-attachments/assets/c4406893-fe6b-4540-ba19-d93449224b2c)
+
+-Create an animal with related data.
+
+![image](https://github.com/user-attachments/assets/88435685-3370-4adc-80de-9571cf73fbc6)
+
+-Get all vaccines for a specific animal.
+
+![image](https://github.com/user-attachments/assets/1b9a60d6-ea24-480d-8359-0b40d6d7b2d8)
+
+-Get all animals with a specific animal name.
+
+![image](https://github.com/user-attachments/assets/1f85d311-db89-4614-a879-9491f8087113)
+
+-Get all animals which is from a specific customer.
+
+![image](https://github.com/user-attachments/assets/65727d66-6a5a-4658-a93d-ad10f3f6d141)
+
+-Delete animal by id.
+
+--ANIMALVACCINE CONTROLLER
+
+
+![image](https://github.com/user-attachments/assets/b0a54cf1-8833-4be8-bedb-607dd10b5c73)
+
+-Gets the vaccines which the protection date is between start and end date.
+
+
 
 
 
