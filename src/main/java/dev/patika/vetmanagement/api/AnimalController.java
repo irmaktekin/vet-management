@@ -2,6 +2,7 @@ package dev.patika.vetmanagement.api;
 
 import dev.patika.vetmanagement.business.abstracts.*;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
+import dev.patika.vetmanagement.core.exception.InvalidGenderException;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.core.utilities.ResultHelper;
@@ -58,6 +59,7 @@ public class AnimalController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<AnimalResponse> save(@Valid @RequestBody AnimalSaveRequest animalSaveRequest) {
+
         Animal animal = this.iModelMapperService.forRequest().map(animalSaveRequest, Animal.class);
         Doctor doctor = this.iDoctorService.get(animalSaveRequest.getDoctorId());
         Customer customer = this.iCustomerService.get(animalSaveRequest.getCustomerId());
@@ -68,6 +70,7 @@ public class AnimalController {
         for (Long id : animalSaveRequest.getVaccines()) {
             Vaccine vaccine = this.iVaccineService.get(id);
             vaccines.add(vaccine);
+            System.out.println(id);
         }
         animal.setVaccines(vaccines);
         this.iAnimalService.save(animal);
@@ -99,6 +102,12 @@ public class AnimalController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<AnimalResponse> update(@Valid @RequestBody AnimalUpdateRequest animalUpdateRequest) {
         Animal animal = this.iModelMapperService.forRequest().map(animalUpdateRequest, Animal.class);
+        Set<Vaccine> vaccines = new HashSet<>();
+        for (Long id : animalUpdateRequest.getVaccines()) {
+            Vaccine vaccine = this.iVaccineService.get(id);
+            vaccines.add(vaccine);
+        }
+        animal.setVaccines(vaccines);
         this.iAnimalService.update(animal);
         return ResultHelper.success(this.iModelMapperService.forResponse().map(animal, AnimalResponse.class));
     }
@@ -123,16 +132,10 @@ public class AnimalController {
        @ResponseStatus(HttpStatus.CREATED)
        public ResponseEntity<String> addVaccineToAnimal(
                @PathVariable Long animalId,
-               @RequestBody VacinneAnimalSaveRequest vacinneAnimalSaveRequest)
-               {
-           try {
-               iAnimalVaccineService.addVaccineToAnimal(animalId, vacinneAnimalSaveRequest.getVaccineCode(), vacinneAnimalSaveRequest.getVaccineName());
-               return ResponseEntity.status(HttpStatus.CREATED).body("Vaccine added to animal successfully.");
-           } catch (IllegalStateException e) {
-               return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-           } catch (RuntimeException e) {
-               return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-           }
+               @RequestBody VacinneAnimalSaveRequest vacinneAnimalSaveRequest) {
+           iAnimalVaccineService.addVaccineToAnimal(animalId, vacinneAnimalSaveRequest.getVaccineId());
+           return ResponseEntity.status(HttpStatus.CREATED).body("Vaccine added to animal successfully.");
+
        }
 
 }

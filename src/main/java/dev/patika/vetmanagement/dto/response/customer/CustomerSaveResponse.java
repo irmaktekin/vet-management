@@ -13,4 +13,5 @@ public class CustomerSaveResponse {
     private String phone;
     private String address;
     private String city;
+    private String  mail;
 }

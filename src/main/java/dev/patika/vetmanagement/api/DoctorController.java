@@ -3,6 +3,7 @@ import dev.patika.vetmanagement.business.abstracts.IAvailableDateService;
 import dev.patika.vetmanagement.business.abstracts.IDoctorService;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
 import dev.patika.vetmanagement.core.exception.AvailableDateNotFoundException;
+import dev.patika.vetmanagement.core.exception.NotFoundException;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.core.utilities.ResultHelper;
@@ -64,6 +65,9 @@ public class DoctorController {
             @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize
     ){
         Page<Doctor> categoryPage = this.iDoctorService.cursor(page,pageSize);
+        if (categoryPage.isEmpty()) {
+            throw new NotFoundException("No doctors found.");
+        }
         Page<DoctorResponse> categoryResponsePage = categoryPage
                 .map(category -> this.iModelMapperService.forResponse().map(category,DoctorResponse.class));
         return ResultHelper.cursor(categoryResponsePage);

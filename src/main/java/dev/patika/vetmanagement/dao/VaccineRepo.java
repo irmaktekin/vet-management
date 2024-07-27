@@ -16,8 +16,6 @@ import java.util.Optional;
 public interface VaccineRepo extends JpaRepository<Vaccine,Integer> {
     @Query("SELECT v FROM Vaccine v JOIN v.animals a WHERE a.id = :animalId")
     List<Vaccine> findByAnimalId(@Param("animalId")int animalId);
-    @Query("SELECT v FROM Vaccine v WHERE v.code = :code AND v.name = :name")
-    Optional<Vaccine> findVaccinesByCodeAndName(@Param("code") String code, @Param("name") String name);
-
-
+    @Query("SELECT v FROM Vaccine v WHERE v.id = :id")
+    Optional<Vaccine> findVaccinesByCodeAndName(@Param("id") Long id);
 }

@@ -11,15 +11,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerSaveRequest {
+    @NotNull(message = "Category name must have a value.")
     private String name;
 
+    @NotNull(message = "Phone must have a value.")
     private String phone;
 
+    @NotNull(message = "Mail must have a value.")
     private String mail;
+
+    @NotNull(message = "Address must have a value.")
     private String  address;
+
+    @NotNull(message = "City must have a value.")
     private String city;
 
-    @NotNull
     private List<Long> animalIds;
 
 }

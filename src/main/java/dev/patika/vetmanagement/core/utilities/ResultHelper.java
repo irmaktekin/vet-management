@@ -13,6 +13,12 @@ public class ResultHelper {
     public static <T> ResultData<T> validateError(T data){
         return new ResultData<>(Message.VALIDATE_ERROR,"404",false,data);
     }
+    public static Result invalidEnum(String message){
+        return new Result(message,"400",false);
+    }
+    public static <T> ResultData<T> duplicateRecord(T data){
+        return new ResultData<>(Message.DUPLICATE_VALUES,"400",false,data);
+    }
     public static <T> ResultData<T> success(T data){
 
         return new ResultData<>(Message.OK,"200",true,data);

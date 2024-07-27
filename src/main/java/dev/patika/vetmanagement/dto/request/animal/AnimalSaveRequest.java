@@ -1,6 +1,9 @@
 package dev.patika.vetmanagement.dto.request.animal;
 
+import dev.patika.vetmanagement.entities.Gender;
 import dev.patika.vetmanagement.entities.Vaccine;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -19,7 +22,8 @@ public class AnimalSaveRequest {
 
     private String breed;
 
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     private String colour;
 

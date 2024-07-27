@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VaccineResponse {
+    private Long id;
     private String name;
     private String code;
     private LocalDate protectionStartDate;

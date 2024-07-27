@@ -1,5 +1,6 @@
 package dev.patika.vetmanagement.dto.response.animal;
 
+import dev.patika.vetmanagement.entities.Gender;
 import dev.patika.vetmanagement.entities.Vaccine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +14,11 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnimalResponse {
+    private Long id;
     private String name;
     private String species;
     private String breed;
-    private String gender;
+    private Gender gender;
     private String colour;
     private LocalDate dateOfBirth;
     private Set<Vaccine> vaccines = new HashSet<>();

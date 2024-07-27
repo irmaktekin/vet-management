@@ -1,5 +1,7 @@
 package dev.patika.vetmanagement.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +28,7 @@ public class Animal {
 
     private String breed;
 
+
     private String gender;
 
     private String colour;
@@ -33,10 +36,11 @@ public class Animal {
     private LocalDate dateOfBirth;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id", nullable = false)
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade =CascadeType.ALL)
     @JoinTable(
             name = "animal_vaccine",
             joinColumns = @JoinColumn(name = "animal_id"),
@@ -44,9 +48,12 @@ public class Animal {
     )
     private Set<Vaccine> vaccines = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
+
+
+
 
 
 }

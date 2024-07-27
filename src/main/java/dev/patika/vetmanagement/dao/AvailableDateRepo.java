@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AvailableDateRepo extends JpaRepository<AvailableDate, Integer> {
+    boolean existsById(Long id);
 }

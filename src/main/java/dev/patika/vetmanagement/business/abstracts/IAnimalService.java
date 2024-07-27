@@ -5,6 +5,7 @@ import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAnimalService {
     Animal save(Animal animal);
@@ -14,6 +15,7 @@ public interface IAnimalService {
     boolean delete(int id);
     List<Animal> findByName(String name);
     List<Animal> findByCustomerName(String customerName);
+    boolean existsById(Long animalId);
 
 
 }

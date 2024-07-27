@@ -1,6 +1,8 @@
 package dev.patika.vetmanagement.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,13 +23,17 @@ public class Customer {
 
     private String name;
 
+    @Column(unique = true)
     private String phone;
 
+    @Email
+    @Column(unique = true)
     private String mail;
 
     private String  address;
 
     private String city;
+
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Animal> animals = new HashSet<>();

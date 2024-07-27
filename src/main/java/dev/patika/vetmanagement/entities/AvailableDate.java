@@ -1,6 +1,7 @@
 package dev.patika.vetmanagement.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,9 +22,11 @@ public class AvailableDate {
     @Column(name="date_id")
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private LocalDate availableDate;
 
+    @JsonIgnore
     // Many-to-Many relationship with Doctor
-    @ManyToMany(mappedBy = "availableDates")
+    @ManyToMany(mappedBy = "availableDates",cascade = CascadeType.ALL)
     private Set<Doctor> doctors = new HashSet<>();
 }

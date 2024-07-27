@@ -23,11 +23,11 @@ public class Appointment {
 
     private LocalDateTime appointmentDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
 }

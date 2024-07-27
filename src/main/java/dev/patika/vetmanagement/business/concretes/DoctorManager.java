@@ -2,12 +2,15 @@ package dev.patika.vetmanagement.business.concretes;
 
 import dev.patika.vetmanagement.business.abstracts.IDoctorService;
 import dev.patika.vetmanagement.core.exception.AvailableDateNotFoundException;
+import dev.patika.vetmanagement.core.exception.NotFoundException;
+import dev.patika.vetmanagement.core.utilities.Message;
 import dev.patika.vetmanagement.dao.AppointmentRepo;
 import dev.patika.vetmanagement.dao.AvailableDateRepo;
 import dev.patika.vetmanagement.dao.DoctorRepo;
 import dev.patika.vetmanagement.entities.Appointment;
 import dev.patika.vetmanagement.entities.AvailableDate;
 import dev.patika.vetmanagement.entities.Doctor;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -43,6 +46,7 @@ public class DoctorManager implements IDoctorService {
 
     @Override
     public Doctor update(Doctor doctor, List<Long> availableDateIds) {
+
         List<AvailableDate> availableDates = availableDateIds.stream()
                 .map(dateId -> availableDateRepo.findById(Math.toIntExact(dateId))
                         .orElseThrow(() -> new AvailableDateNotFoundException("Available date with ID " + dateId + " does not exist")))
@@ -55,8 +59,10 @@ public class DoctorManager implements IDoctorService {
 
     @Override
     public Doctor get(long id) {
-        return this.doctorRepo.findById((int)id).orElseThrow();
+        return doctorRepo.findById((int) id).orElseThrow(()->new NotFoundException("Doctor not found with ID: " + id));
+                /*.orElseThrow(() -> new EntityNotFoundException("Doctor not found with ID: " + id));*/
     }
+
 
     @Override
     public boolean delete(int id) {

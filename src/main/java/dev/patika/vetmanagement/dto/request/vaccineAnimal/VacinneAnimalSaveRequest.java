@@ -1,23 +1,35 @@
 package dev.patika.vetmanagement.dto.request.vaccineAnimal;
 
+import jakarta.validation.constraints.NotNull;
+
 public class VacinneAnimalSaveRequest {
-    private String vaccineCode;
-    private String vaccineName;
-
-    // Getters ve Setters
-    public String getVaccineCode() {
-        return vaccineCode;
+    public @NotNull Long getVaccineId() {
+        return vaccineId;
     }
 
-    public void setVaccineCode(String vaccineCode) {
-        this.vaccineCode = vaccineCode;
+    public void setVaccineId(@NotNull Long vaccineId) {
+        this.vaccineId = vaccineId;
     }
 
-    public String getVaccineName() {
-        return vaccineName;
-    }
+    /*private String vaccineCode;
+        private String vaccineName;
 
-    public void setVaccineName(String vaccineName) {
-        this.vaccineName = vaccineName;
-    }
+        // Getters ve Setters
+        public String getVaccineCode() {
+            return vaccineCode;
+        }
+
+        public void setVaccineCode(String vaccineCode) {
+            this.vaccineCode = vaccineCode;
+        }
+
+        public String getVaccineName() {
+            return vaccineName;
+        }
+
+        public void setVaccineName(String vaccineName) {
+            this.vaccineName = vaccineName;
+        }*/
+    @NotNull
+    private Long vaccineId;
 }

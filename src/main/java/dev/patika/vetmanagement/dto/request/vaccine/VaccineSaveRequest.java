@@ -1,14 +1,14 @@
 package dev.patika.vetmanagement.dto.request.vaccine;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class VaccineSaveRequest {
     private String name;
     private String code;

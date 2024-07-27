@@ -1,11 +1,13 @@
 package dev.patika.vetmanagement.dao;
 
 import dev.patika.vetmanagement.entities.Animal;
+import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AnimalRepo extends JpaRepository<Animal,Integer> {
