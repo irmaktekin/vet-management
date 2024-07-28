@@ -42,7 +42,7 @@ VACCINE CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/d2b86c67-5805-4401-bb3b-06d7467b2df7)
 
--Gets the vaccines for a specific animal.
+-Gets the vaccines for a specific animal.(Criteria 24)
 
 ![image](https://github.com/user-attachments/assets/a5f7ea1c-ac5f-4301-b27b-870dcaf117ff)
 
@@ -131,8 +131,8 @@ ANIMAL CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/88435685-3370-4adc-80de-9571cf73fbc6)
 
--Get all vaccines for a specific animal.
-
+-Add vaccine to a specific animal. (Criteria 21,22,2)
+3
 ![image](https://github.com/user-attachments/assets/1b9a60d6-ea24-480d-8359-0b40d6d7b2d8)
 
 -Get all animals with a specific animal name.
