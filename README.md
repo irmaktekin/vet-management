@@ -1,6 +1,6 @@
 ### UML DIAGRAM FOR VET MANAGEMENT SYSTEM
 
-![image](https://github.com/user-attachments/assets/4bd5ecb9-9d5b-4860-b4ff-0ef56f0dfbd8)
+![image](https://github.com/user-attachments/assets/7d3a3433-e7ed-4041-956f-a29c312bfae6)
 
 
 ## API Documentation
