@@ -161,7 +161,7 @@ ANIMALVACCINE CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/b0a54cf1-8833-4be8-bedb-607dd10b5c73)
 
--Gets the vaccines which the protection date is between start and end date.
+-Gets the vaccines which is applied to an animal and the protection date is between start and end date.
 
 
 
