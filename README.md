@@ -115,6 +115,14 @@ APPOINTMENT CONTROLLER
 
 -Delete the appointment by id.
 
+![image](https://github.com/user-attachments/assets/59b1dec0-2360-478f-a08f-4286f0420e4d)
+
+-Filter by doctor id and dates. (Criteria 20)
+
+![image](https://github.com/user-attachments/assets/b1260bd9-ebf3-4a71-8fe2-360eb0cd7771)
+
+-Filter by animal id and dates. (Criteria 19)
+
 ANIMAL CONTROLLER
 
 ![image](https://github.com/user-attachments/assets/81e529db-c492-4f0b-89dc-5b855eeb4176)
