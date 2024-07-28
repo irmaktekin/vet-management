@@ -4,6 +4,7 @@ import dev.patika.vetmanagement.business.abstracts.*;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
 import dev.patika.vetmanagement.core.exception.InvalidGenderException;
 import dev.patika.vetmanagement.core.exception.NotFoundException;
+import dev.patika.vetmanagement.core.exception.ValidationException;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.core.utilities.ResultHelper;
@@ -23,9 +24,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -37,6 +38,8 @@ public class AnimalController {
     private final ICustomerService iCustomerService;
     private final IVaccineService iVaccineService;
     private final IAnimalVaccineService iAnimalVaccineService;
+    private final LocalDateTime now = LocalDateTime.now(); // Current time for comparison
+
 
     public AnimalController(IAnimalService iAnimalService, IModelMapperService iModelMapperService, IDoctorService iDoctorService, ICustomerService iCustomerService, IVaccineService iVaccineService, IAnimalVaccineService iAnimalVaccineService) {
         this.iAnimalService = iAnimalService;
@@ -73,6 +76,15 @@ public class AnimalController {
             vaccines.add(vaccine);
             System.out.println(id);
         }
+        Set<Vaccine> newVaccines = new HashSet<>();
+        for (Long id : animalSaveRequest.getVaccines()) {
+            Vaccine vaccine = this.iVaccineService.get(id);
+            newVaccines.add(vaccine);
+            System.out.println(id);
+        }
+
+        // Validate vaccines
+        iAnimalVaccineService.validateAndAddVaccines(newVaccines);
         animal.setVaccines(vaccines);
         this.iAnimalService.save(animal);
 
@@ -139,5 +151,7 @@ public class AnimalController {
            return ResponseEntity.ok(ResultHelper.success(animalResponse));
 
        }
+
+
 }
 

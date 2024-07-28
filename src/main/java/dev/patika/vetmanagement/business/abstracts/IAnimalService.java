@@ -2,10 +2,12 @@ package dev.patika.vetmanagement.business.abstracts;
 
 import dev.patika.vetmanagement.entities.Animal;
 import dev.patika.vetmanagement.entities.Doctor;
+import dev.patika.vetmanagement.entities.Vaccine;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface IAnimalService {
     Animal save(Animal animal);
@@ -18,5 +20,4 @@ public interface IAnimalService {
     boolean existsById(Long animalId);
     List<Animal> findAnimalByCustomerId(Long customerId);
     Optional<Animal> findById(Long id);
-
 }

@@ -148,4 +148,7 @@ public class AnimalManager implements IAnimalService {
         return animalRepo.findById(Math.toIntExact(id));
     }
 
+
+
+
 }

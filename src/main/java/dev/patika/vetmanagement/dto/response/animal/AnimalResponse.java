@@ -23,5 +23,4 @@ public class AnimalResponse {
     private LocalDate dateOfBirth;
     private Set<Vaccine> vaccines = new HashSet<>();
     private Long customerId;
-    private Long doctorId;
 }

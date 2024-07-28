@@ -16,7 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AnimalVaccineManager implements IAnimalVaccineService {
@@ -63,5 +63,36 @@ public class AnimalVaccineManager implements IAnimalVaccineService {
          return animalVaccineRepository.findAnimalVaccinesByProtectionFinishDateBetween(startDate, endDate,pageable);
     }
 
+    @Override
+    public void validateAndAddVaccines(Set<Vaccine> newVaccines) {
+        // Use a map to keep track of vaccines by their name and code
+        // Create a map to keep track of vaccines by their name and code
+        // Create a map to track vaccines by name and code
+        Map<String, List<Vaccine>> vaccineMap = new HashMap<>();
 
-}
+        // Populate the map with new vaccines
+        for (Vaccine vaccine : newVaccines) {
+            String key = vaccine.getName() + ":" + vaccine.getCode();
+            vaccineMap.computeIfAbsent(key, k -> new ArrayList<>()).add(vaccine);
+        }
+
+        // Check for duplicates with active protection
+        for (List<Vaccine> vaccinesWithSameNameAndCode : vaccineMap.values()) {
+            if (vaccinesWithSameNameAndCode.size() > 1) {
+                // Extract name and code
+                String name = vaccinesWithSameNameAndCode.get(0).getName();
+                String code = vaccinesWithSameNameAndCode.get(0).getCode();
+
+                // Check if any active vaccines exist with the same name and code
+                List<Vaccine> activeVaccines = animalVaccineRepository.findActiveVaccinesByNameAndCode(name, code);
+
+                if (!activeVaccines.isEmpty()) {
+                    // If any active vaccine with the same name and code is found, throw an exception
+                    throw new ValidationException("Cannot add vaccines with name " + name + " and code " + code + " because a duplicate with active protection exists.");
+                }
+            }
+        }
+    }
+    }
+
+

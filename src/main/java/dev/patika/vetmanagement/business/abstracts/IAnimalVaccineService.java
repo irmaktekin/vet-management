@@ -10,8 +10,11 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public interface IAnimalVaccineService {
     AnimalVaccine addVaccineToAnimal(Long animalId, Long vaccineId);
     Page<AnimalVaccine> getAnimalVaccinesByProtectionFinishDateBetween(LocalDate startDate, LocalDate endDate,Pageable pageable);
+    void validateAndAddVaccines(Set<Vaccine> newVaccines);
+
 }

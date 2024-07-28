@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface AnimalVaccineRepository extends JpaRepository<AnimalVaccine,Long> {
@@ -32,4 +33,7 @@ public interface AnimalVaccineRepository extends JpaRepository<AnimalVaccine,Lon
             @Param("endDate") LocalDate endDate,
             Pageable pageable
     );
+    @Query("SELECT v FROM Vaccine v WHERE v.name = :name AND v.code = :code AND v.protectionFinishDate > CURRENT_DATE")
+    List<Vaccine> findActiveVaccinesByNameAndCode(@Param("name") String name, @Param("code") String code);
 }
+
