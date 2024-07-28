@@ -122,18 +122,18 @@ ANIMAL CONTROLLER
 
 -Gets all animals with pagination.
 
-![image](https://github.com/user-attachments/assets/ad0eda9a-f1ca-45fb-abc1-dc112af3358a)
+![image](https://github.com/user-attachments/assets/70b4f968-6232-46df-aeba-3a4685c1cb6c)
 
 -Update the specific animal's information with id.
 
-![image](https://github.com/user-attachments/assets/c4406893-fe6b-4540-ba19-d93449224b2c)
+![image](https://github.com/user-attachments/assets/e8f1ac0d-dca1-49f3-b159-2b48b909928d)
 
 -Create an animal with related data.
 
 ![image](https://github.com/user-attachments/assets/88435685-3370-4adc-80de-9571cf73fbc6)
 
 -Add vaccine to a specific animal. (Criteria 21,22,2)
-3
+
 ![image](https://github.com/user-attachments/assets/1b9a60d6-ea24-480d-8359-0b40d6d7b2d8)
 
 -Get all animals with a specific animal name.
