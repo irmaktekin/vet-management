@@ -3,6 +3,7 @@ package dev.patika.vetmanagement.business.concretes;
 import dev.patika.vetmanagement.business.abstracts.IAnimalVaccineService;
 import dev.patika.vetmanagement.core.exception.AnimalNotFoundException;
 import dev.patika.vetmanagement.core.exception.NotFoundException;
+import dev.patika.vetmanagement.core.exception.ValidationException;
 import dev.patika.vetmanagement.dao.AnimalRepo;
 import dev.patika.vetmanagement.dao.AnimalVaccineRepository;
 import dev.patika.vetmanagement.dao.VaccineRepo;
@@ -34,19 +35,22 @@ public class AnimalVaccineManager implements IAnimalVaccineService {
     public AnimalVaccine addVaccineToAnimal(Long animalId,Long vaccineId) {
         // Hayvanı ve aşıyı bul
         System.out.println(animalId);
+
         Animal animal = animalRepository.findById(Math.toIntExact(animalId))
                 .orElseThrow(() -> new NotFoundException("Animal not found"));
         Vaccine vaccine = vaccineRepository.findVaccinesByCodeAndName(vaccineId)
                 .orElseThrow(() -> new NotFoundException("Vaccine not found"));
 
+        String vaccineCode = vaccine.getCode();
+        String vaccineName = vaccine.getName();
+
         LocalDate currentDate = LocalDate.now();
-        boolean isVaccineActive = animalVaccineRepository.findActiveAnimalVaccinesByVaccineId(animalId, vaccineId)
+        boolean isVaccineActive = animalVaccineRepository.findActiveAnimalVaccinesByVaccineId(animalId, vaccineCode, vaccineName)
                 .stream()
                 .anyMatch(av -> av.getVaccine().getProtectionFinishDate().isAfter(currentDate));
        if (isVaccineActive) {
-            throw new NotFoundException("The animal already has an active vaccine with this code and name.");
+            throw new ValidationException("The animal already has an active vaccine with this code and name.");
         }
-        System.out.println("test2");
         // Aşıyı ekle
         AnimalVaccine animalVaccine = new AnimalVaccine(animal, vaccine);
 
@@ -55,6 +59,8 @@ public class AnimalVaccineManager implements IAnimalVaccineService {
 
 
     }
+
+
 
     @Override
     public Page<AnimalVaccine> getAnimalVaccinesByProtectionFinishDateBetween(LocalDate startDate, LocalDate endDate,Pageable pageable) {

@@ -2,6 +2,7 @@ package dev.patika.vetmanagement.business.concretes;
 
 import dev.patika.vetmanagement.business.abstracts.IDoctorService;
 import dev.patika.vetmanagement.core.exception.AvailableDateNotFoundException;
+import dev.patika.vetmanagement.core.exception.DuplicateRecordException;
 import dev.patika.vetmanagement.core.exception.NotFoundException;
 import dev.patika.vetmanagement.core.utilities.Message;
 import dev.patika.vetmanagement.dao.AppointmentRepo;
@@ -11,6 +12,7 @@ import dev.patika.vetmanagement.entities.Appointment;
 import dev.patika.vetmanagement.entities.AvailableDate;
 import dev.patika.vetmanagement.entities.Doctor;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +38,19 @@ public class DoctorManager implements IDoctorService {
 
     @Override
     public Doctor save(Doctor doctor) {
-        return this.doctorRepo.save(doctor);
+
+        try {
+            return doctorRepo.save(doctor);
+        } catch (DataIntegrityViolationException e) {
+            String rootCauseMessage = e.getRootCause() != null ? e.getRootCause().getMessage() : "";
+            if (rootCauseMessage.contains("doctor_mail_key")) {
+                throw new DuplicateRecordException("email", rootCauseMessage);
+            }
+            if(rootCauseMessage.contains("doctor_phone_key")){
+                throw new DuplicateRecordException("phone", rootCauseMessage);
+            }
+            throw e; // rethrow if it's a different DataIntegrityViolationException
+        }
     }
 
     @Override

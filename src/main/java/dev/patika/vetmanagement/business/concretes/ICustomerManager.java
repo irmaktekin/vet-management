@@ -69,16 +69,6 @@ public class ICustomerManager implements ICustomerService {
 
     @Override
     public boolean delete(int id) {
-        try{
-            Customer customer = customerRepo.findById(id)
-                    .orElseThrow(() -> new NotFoundException("No data found with ID: " + id));
-
-            // Delete the customer
-            customerRepo.delete(customer);
-        }
-        catch (Exception e){
-            throw new NotFoundException("No data found with ID: "+id);
-        }
  try{
             Customer customer = customerRepo.findById(id)
                     .orElseThrow(() -> new NotFoundException("No data found with ID: " + id));

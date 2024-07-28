@@ -11,7 +11,7 @@ public class ResultHelper {
         return new ResultData<>(Message.CREATED,"201",true,data);
     }
     public static <T> ResultData<T> validateError(T data){
-        return new ResultData<>(Message.VALIDATE_ERROR,"404",false,data);
+        return new ResultData<>(Message.VALIDATE_ERROR,"400",false,data);
     }
     public static Result invalidEnum(String message){
         return new Result(message,"400",false);

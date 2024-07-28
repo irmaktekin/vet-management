@@ -1,10 +1,7 @@
 package dev.patika.vetmanagement.core.config.ModelMapper;
 
 import com.fasterxml.jackson.databind.util.ExceptionUtil;
-import dev.patika.vetmanagement.core.exception.AvailableDateNotFoundException;
-import dev.patika.vetmanagement.core.exception.DuplicateRecordException;
-import dev.patika.vetmanagement.core.exception.InvalidGenderException;
-import dev.patika.vetmanagement.core.exception.NotFoundException;
+import dev.patika.vetmanagement.core.exception.*;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.core.utilities.Message;
@@ -37,6 +34,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ResultHelper.notFoundError(e.getMessage()),HttpStatus.NOT_FOUND);
 
     }
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Result> validationException(ValidationException e){
+        return new ResponseEntity<>(ResultHelper.validateError(e.getMessage()),HttpStatus.BAD_REQUEST);
+
+    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleErrors(MethodArgumentNotValidException e) {
         List<String> validationErrorList = e.getBindingResult().getFieldErrors().stream()
@@ -67,4 +69,6 @@ public class GlobalExceptionHandler {
         // Customize the response body to include only the status and message
         return new ResponseEntity<>(ResultHelper.invalidEnum(ex.getMessage()),HttpStatus.BAD_REQUEST);
     }
+
+
 }

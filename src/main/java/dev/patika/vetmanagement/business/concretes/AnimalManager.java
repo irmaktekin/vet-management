@@ -134,7 +134,7 @@ public class AnimalManager implements IAnimalService {
                 .orElseThrow(() -> new NotFoundException("Animal not found with the provided ID"));
 
         // Aşıyı kontrol et
-        Optional<AnimalVaccine> existingVaccines = animalVaccineRepository.findActiveAnimalVaccinesByVaccineId(animalId, vaccine.getId());
+        Optional<AnimalVaccine> existingVaccines = animalVaccineRepository.findActiveAnimalVaccinesByVaccineId(animalId, vaccineCode,vaccineName);
 
         if (existingVaccines.isEmpty()) {
             AnimalVaccine animalVaccine = new AnimalVaccine();

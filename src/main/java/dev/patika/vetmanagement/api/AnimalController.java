@@ -147,11 +147,17 @@ public class AnimalController {
 
        @PostMapping("/{animalId}/vaccines")
        @ResponseStatus(HttpStatus.CREATED)
-       public ResponseEntity<String> addVaccineToAnimal(
+       public ResponseEntity<ResultData<AnimalResponse>> addVaccineToAnimal(
                @PathVariable Long animalId,
                @RequestBody VacinneAnimalSaveRequest vacinneAnimalSaveRequest) {
            iAnimalVaccineService.addVaccineToAnimal(animalId, vacinneAnimalSaveRequest.getVaccineId());
-           return ResponseEntity.status(HttpStatus.CREATED).body("Vaccine added to animal successfully.");
+
+           // Fetch the updated animal to return in the response
+           Animal updatedAnimal = iAnimalService.get(animalId);
+
+           // Map the updated animal to response DTO
+           AnimalResponse animalResponse = iModelMapperService.forResponse().map(updatedAnimal, AnimalResponse.class);
+           return ResponseEntity.ok(ResultHelper.success(animalResponse));
 
        }
 
