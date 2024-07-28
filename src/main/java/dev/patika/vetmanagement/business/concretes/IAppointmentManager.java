@@ -25,7 +25,6 @@ public class IAppointmentManager implements IAppointmentService {
     private final AppointmentRepo appointmentRepo;
     private IDoctorService doctorService;
 
-
     public IAppointmentManager(AppointmentRepo appointmentRepo, IDoctorService doctorService) {
         this.appointmentRepo = appointmentRepo;
         this.doctorService = doctorService;

@@ -28,7 +28,6 @@ public class Animal {
 
     private String breed;
 
-
     private String gender;
 
     private String colour;

@@ -103,7 +103,6 @@ public class AnimalController {
                 .map(animal -> this.iModelMapperService.forResponse().map(animal, AnimalResponse.class))
                 .collect(Collectors.toList());
 
-        // Return the mapped response
         return ResultHelper.success(animalResponses);
     }
 
@@ -129,22 +128,6 @@ public class AnimalController {
         return ResultHelper.success(this.iModelMapperService.forResponse().map(animal, AnimalResponse.class));
     }
 
-   /* @PostMapping("/{animalId}/vaccines")
-    public ResponseEntity<String> addVaccineToAnimal(
-            @PathVariable Long animalId,
-            @RequestParam String code,
-            @RequestParam String name) {
-        try {
-            iAnimalVaccineService.getActiveVaccine(animalId, code,name);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Vaccine added to animal successfully.");
-        } catch (IllegalStateException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        }
-    }*/
-
-
        @PostMapping("/{animalId}/vaccines")
        @ResponseStatus(HttpStatus.CREATED)
        public ResponseEntity<ResultData<AnimalResponse>> addVaccineToAnimal(
@@ -152,14 +135,11 @@ public class AnimalController {
                @RequestBody VacinneAnimalSaveRequest vacinneAnimalSaveRequest) {
            iAnimalVaccineService.addVaccineToAnimal(animalId, vacinneAnimalSaveRequest.getVaccineId());
 
-           // Fetch the updated animal to return in the response
            Animal updatedAnimal = iAnimalService.get(animalId);
 
-           // Map the updated animal to response DTO
            AnimalResponse animalResponse = iModelMapperService.forResponse().map(updatedAnimal, AnimalResponse.class);
            return ResponseEntity.ok(ResultHelper.success(animalResponse));
 
        }
-
 }
 

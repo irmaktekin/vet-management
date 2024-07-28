@@ -52,15 +52,12 @@ public class AppointmentController {
         Customer customer = iCustomerService.get(appointmentSaveRequest.getCustomerId());
         Doctor doctor = iDoctorService.get(appointmentSaveRequest.getDoctorId());
 
-
         appointment.setCustomer(customer);
         appointment.setDoctor(doctor);
         appointment.setAppointmentDate(appointmentSaveRequest.getAppointmentDate());
         this.iAppointmentService.save(appointment);
 
         return ResultHelper.created(this.iModelMapperService.forResponse().map(appointment, AppointmentResponse.class));
-
-
     }
 
     //Get all appointments with pagination
@@ -68,8 +65,7 @@ public class AppointmentController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<CursorResponse<AppointmentResponse>> cursor(
             @RequestParam(name = "page",required = false,defaultValue = "0") int page,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize
-    ){
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize){
         Page<Appointment> appointmentPage = this.iAppointmentService.cursor(page,pageSize);
         Page<AppointmentResponse> appointmentResponsePage = appointmentPage
                 .map(appointment -> this.iModelMapperService.forResponse().map(appointment,AppointmentResponse.class));
@@ -81,21 +77,17 @@ public class AppointmentController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<AppointmentResponse> update(@Valid @RequestBody AppointmentUpdateRequest appointmentUpdateRequest){
 
-        // Map the request to the Appointment entity
         Appointment appointment = iModelMapperService.forRequest().map(appointmentUpdateRequest, Appointment.class);
         Doctor doctor = iDoctorService.get(appointmentUpdateRequest.getDoctorId());
         Customer customer = iCustomerService.get(appointmentUpdateRequest.getCustomerId());
 
-        // Set the fetched entities to the appointment
         appointment.setDoctor(doctor);
         appointment.setCustomer(customer);
-        // Perform the update
+
         Appointment updatedAppointment = iAppointmentService.update(appointment);
 
-        // Map the updated entity to the response
         AppointmentResponse appointmentResponse = iModelMapperService.forResponse().map(updatedAppointment, AppointmentResponse.class);
 
-        // Return the result
         return ResultHelper.success(appointmentResponse);
     }
 
@@ -111,8 +103,7 @@ public class AppointmentController {
     public ResultData<List<AppointmentResponse>> getAppointments(@RequestBody AppointmentFilterRequest appointmentFilterRequest){
         Doctor doctor = iDoctorService.getDoctorByName(appointmentFilterRequest.getDoctorName());
 
-        System.out.println(appointmentFilterRequest.getDoctorName());
-// Fetch the appointments
+        // Fetch the appointments
         List<Appointment> appointmentList = iAppointmentService.findAppointmentsByDoctorAndDateRange(appointmentFilterRequest.getDoctorName(), appointmentFilterRequest.getStartDate(), appointmentFilterRequest.getEndDate());
 
         // Map each appointment to AppointmentResponse
@@ -129,10 +120,7 @@ public class AppointmentController {
         if (animal.isEmpty()) {
             throw new IllegalArgumentException("Invalid animal name");
         }
-// Fetch the appointments
-        System.out.println(appointmentFilterByAnimalRequest.getStartDate());
-        System.out.println(appointmentFilterByAnimalRequest.getEndDate());
-
+        // Fetch the appointments
         List<Appointment> appointmentList = iAppointmentService.findAppointmentsByAnimalAndDateRange(appointmentFilterByAnimalRequest.getAnimalName(), appointmentFilterByAnimalRequest.getStartDate(), appointmentFilterByAnimalRequest.getEndDate());
         System.out.println(appointmentList.size());
         // Map each appointment to AppointmentResponse
@@ -143,5 +131,4 @@ public class AppointmentController {
         return ResultHelper.successList(appointments);
 
     }
-
 }

@@ -33,9 +33,6 @@ public class AnimalVaccineManager implements IAnimalVaccineService {
     }
 
     public AnimalVaccine addVaccineToAnimal(Long animalId,Long vaccineId) {
-        // Hayvanı ve aşıyı bul
-        System.out.println(animalId);
-
         Animal animal = animalRepository.findById(Math.toIntExact(animalId))
                 .orElseThrow(() -> new NotFoundException("Animal not found"));
         Vaccine vaccine = vaccineRepository.findVaccinesByCodeAndName(vaccineId)
@@ -51,7 +48,6 @@ public class AnimalVaccineManager implements IAnimalVaccineService {
        if (isVaccineActive) {
             throw new ValidationException("The animal already has an active vaccine with this code and name.");
         }
-        // Aşıyı ekle
         AnimalVaccine animalVaccine = new AnimalVaccine(animal, vaccine);
 
         animalVaccineRepository.save(animalVaccine);

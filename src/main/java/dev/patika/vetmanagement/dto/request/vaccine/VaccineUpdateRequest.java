@@ -17,7 +17,9 @@ public class VaccineUpdateRequest {
 
     @NotNull
     private String code;
+    @NotNull
     private LocalDate protectionStartDate;
+    @NotNull
     private LocalDate protectionFinishDate;
 
 }

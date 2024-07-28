@@ -51,7 +51,7 @@ public class DoctorManager implements IDoctorService {
             if(rootCauseMessage.contains("doctor_phone_key")){
                 throw new DuplicateRecordException("phone", rootCauseMessage);
             }
-            throw e; // rethrow if it's a different DataIntegrityViolationException
+            throw e;
         }
     }
 
@@ -68,7 +68,6 @@ public class DoctorManager implements IDoctorService {
                         .orElseThrow(() -> new AvailableDateNotFoundException("Available date with ID " + dateId + " does not exist")))
                 .collect(Collectors.toList());
 
-        // Set the fetched available dates to the doctor
         doctor.setAvailableDates(availableDates);
         this.get(doctor.getId());
         return this.doctorRepo.save(doctor);    }
@@ -78,8 +77,6 @@ public class DoctorManager implements IDoctorService {
         return doctorRepo.findById((int) id).orElseThrow(()->new NotFoundException("Doctor not found with ID: " + id));
                 /*.orElseThrow(() -> new EntityNotFoundException("Doctor not found with ID: " + id));*/
     }
-
-
     @Override
     public boolean delete(int id) {
         Doctor doctor = this.get(id);

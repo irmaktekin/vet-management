@@ -43,7 +43,6 @@ public class AnimalManager implements IAnimalService {
     @Override
     public Animal save(Animal animal) {
 
-
         if (animal.getCustomer() != null && animal.getCustomer().getId() != null) {
             customerRepo.findById(Math.toIntExact(animal.getCustomer().getId()))
                     .orElseThrow(() -> new NotFoundException("Customer with ID " + animal.getCustomer().getId() + " does not exist."));
@@ -54,10 +53,6 @@ public class AnimalManager implements IAnimalService {
             doctorRepo.findById(Math.toIntExact(animal.getDoctor().getId()))
                     .orElseThrow(() -> new NotFoundException("Doctor with ID " + animal.getDoctor().getId() + " does not exist."));
         }
-
-
-
-
         return this.animalRepo.save(animal);
     }
 
@@ -69,7 +64,6 @@ public class AnimalManager implements IAnimalService {
                 throw new NotFoundException("Vaccine with ID " + vaccineId + " does not exist");
             }
         }
-
         this.get(animal.getId());
         return this.animalRepo.save(animal);
     }
@@ -82,13 +76,11 @@ public class AnimalManager implements IAnimalService {
         if (animalPage.isEmpty()) {
             throw new NotFoundException("No animals found");
         }
-
         return animalPage;
     }
 
     @Override
     public Animal get(long id) {
-
         return this.animalRepo.findById((int)id).orElseThrow();
     }
 
@@ -125,15 +117,12 @@ public class AnimalManager implements IAnimalService {
     public void addVaccineToAnimal(Long animalId, String vaccineCode, String vaccineName) {
         LocalDate currentDate = LocalDate.now();
 
-        // Aşıyı ID'sine göre bul
         Vaccine vaccine = vaccineRepo.findById(Math.toIntExact(animalId))
                 .orElseThrow(() -> new NotFoundException("Vaccine not found with the provided ID"));
 
-        // Hayvanı bul
         Animal animal = animalRepo.findById(Math.toIntExact(animalId))
                 .orElseThrow(() -> new NotFoundException("Animal not found with the provided ID"));
 
-        // Aşıyı kontrol et
         Optional<AnimalVaccine> existingVaccines = animalVaccineRepository.findActiveAnimalVaccinesByVaccineId(animalId, vaccineCode,vaccineName);
 
         if (existingVaccines.isEmpty()) {

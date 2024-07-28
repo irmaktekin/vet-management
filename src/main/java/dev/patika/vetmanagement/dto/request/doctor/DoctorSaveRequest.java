@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class DoctorSaveRequest {
-
+    @NotNull
     private String name;
 
     @NotNull(message = "Phone must have a value.")

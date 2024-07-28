@@ -36,7 +36,7 @@ public class ICustomerManager implements ICustomerService {
             if(rootCauseMessage.contains("customer_phone_key")){
                 throw new DuplicateRecordException("phone", rootCauseMessage);
             }
-            throw e; // rethrow if it's a different DataIntegrityViolationException
+            throw e;
         }
     }
 
@@ -69,17 +69,14 @@ public class ICustomerManager implements ICustomerService {
 
     @Override
     public boolean delete(int id) {
- try{
+        try{
             Customer customer = customerRepo.findById(id)
                     .orElseThrow(() -> new NotFoundException("No data found with ID: " + id));
-
-            // Delete the customer
             customerRepo.delete(customer);
         }
         catch (Exception e){
             throw new NotFoundException("No data found with ID: "+id);
         }
-
         return true;
     }
 
@@ -90,6 +87,6 @@ public class ICustomerManager implements ICustomerService {
         if (customers.isEmpty()) {
             throw new NotFoundException("No customers found with the name: " + name);
         }
-
-        return customers;    }
+        return customers;
+    }
 }

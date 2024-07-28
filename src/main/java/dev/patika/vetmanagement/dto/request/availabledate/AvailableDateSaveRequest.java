@@ -1,5 +1,6 @@
 package dev.patika.vetmanagement.dto.request.availabledate;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class AvailableDateSaveRequest {
+    @NotNull
     private LocalDate availableDate;
 
 }

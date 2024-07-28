@@ -46,26 +46,16 @@ public class CustomerController {
         Customer customer = this.iModelMapperService.forRequest().map(customerSaveRequest, Customer.class);
         this.iCustomerService.save(customer);
         return ResultHelper.created(this.iModelMapperService.forResponse().map(customer, CustomerSaveResponse.class));
-
-
     }
     //Filter by name
     @GetMapping("/filterByName")
     public ResultData<List<CustomerSaveResponse>> filterByName(@Valid @RequestBody CustomerFilterRequest customerFilterRequest) {
-        System.out.println(customerFilterRequest.getName());
-
-        // Convert request to Customer entity for searching
         Customer customerCriteria = this.iModelMapperService.forRequest().map(customerFilterRequest, Customer.class);
-
-        // Find customers by name
         List<Customer> customers = this.iCustomerService.findByName(customerCriteria.getName());
-
-        // Map list of Customer entities to list of CustomerSaveResponse DTOs
         List<CustomerSaveResponse> customerResponses = customers.stream()
                 .map(customer -> this.iModelMapperService.forResponse().map(customer, CustomerSaveResponse.class))
                 .collect(Collectors.toList());
 
-        // Return the mapped response
         return ResultHelper.success(customerResponses);
     }
     //get all customers
@@ -73,8 +63,8 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<CursorResponse<CustomerSaveResponse>> cursor(
             @RequestParam(name = "page",required = false,defaultValue = "0") int page,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize
-    ){
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize){
+
         Page<Customer> customerPage = this.iCustomerService.cursor(page,pageSize);
         Page<CustomerSaveResponse> customerSaveResponsePage = customerPage
                 .map(customer -> this.iModelMapperService.forResponse().map(customer,CustomerSaveResponse.class));

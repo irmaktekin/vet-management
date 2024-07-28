@@ -98,15 +98,9 @@ public class DoctorController {
     @PutMapping()
     @ResponseStatus(HttpStatus.OK)
     public ResultData<DoctorResponse> update(@Valid @RequestBody DoctorUpdateRequest doctorUpdateRequest) {
-        System.out.println(doctorUpdateRequest.getAvailableDateIds());
 
-        // Map the update request to the Doctor entity
         Doctor doctor = iModelMapperService.forRequest().map(doctorUpdateRequest, Doctor.class);
-
-        // Update the doctor with the available dates
         Doctor updatedDoctor = iDoctorService.update(doctor, doctorUpdateRequest.getAvailableDateIds());
-
-        // Map the updated doctor entity to DoctorResponse
         DoctorResponse doctorResponse = iModelMapperService.forResponse().map(updatedDoctor, DoctorResponse.class);
 
         return ResultHelper.success(doctorResponse);   }

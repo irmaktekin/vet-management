@@ -43,7 +43,6 @@ public class AvailableDateController {
         this.availableDateService.save(availableDate);
         return ResultHelper.created(this.iModelMapperService.forResponse().map(availableDate, AvailableDateResponse.class));
 
-
     }
 
     //Update available date information
@@ -67,8 +66,7 @@ public class AvailableDateController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<CursorResponse<AvailableDateResponse>> cursor(
             @RequestParam(name = "page",required = false,defaultValue = "0") int page,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize
-    ){
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize){
         Page<AvailableDate> availableDatePage = this.availableDateService.cursor(page,pageSize);
         Page<AvailableDateResponse> availableDates = availableDatePage
                 .map(availableDate -> this.iModelMapperService.forResponse().map(availableDate,AvailableDateResponse.class));

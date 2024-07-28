@@ -32,19 +32,12 @@ public class AnimalVaccineController {
             @RequestParam(name = "page", required = false, defaultValue = "0") int page,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize,
             @RequestBody VacinneAnimalDateRangeRequest vacinneAnimalDateRangeRequest
-    ) {
+            ) {
             Pageable pageable = PageRequest.of(page, pageSize);
             Page<AnimalVaccine> animalVaccinePage = iAnimalVaccineService.getAnimalVaccinesByProtectionFinishDateBetween(
-                    vacinneAnimalDateRangeRequest.getStartDate(), vacinneAnimalDateRangeRequest.getEndDate(), pageable
-            );
-        for (AnimalVaccine animalVaccine : animalVaccinePage.getContent()) {
-            System.out.println("AnimalVaccine: " + animalVaccine);
-        }
-
-
+                    vacinneAnimalDateRangeRequest.getStartDate(), vacinneAnimalDateRangeRequest.getEndDate(), pageable);
             Page<AnimalVaccineResponse> animalVaccineResponsePage = animalVaccinePage
                     .map(animalVaccine -> iModelMapperService.forResponse().map(animalVaccine, AnimalVaccineResponse.class));
-        System.out.println(animalVaccinePage.get().findFirst());
             return ResultHelper.cursor(animalVaccineResponsePage);
     }
 

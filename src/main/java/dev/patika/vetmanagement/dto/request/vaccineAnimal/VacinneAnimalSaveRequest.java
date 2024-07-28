@@ -3,7 +3,7 @@ package dev.patika.vetmanagement.dto.request.vaccineAnimal;
 import jakarta.validation.constraints.NotNull;
 
 public class VacinneAnimalSaveRequest {
-    public @NotNull Long getVaccineId() {
+    public Long getVaccineId() {
         return vaccineId;
     }
 

@@ -55,25 +55,18 @@ public class VaccineController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<VaccineResponse>> get(@PathVariable("id") int animalId){
         // Fetch vaccines by animal ID
-            List<Vaccine> vaccines = iVaccineService.findByAnimalId(animalId);
+        List<Vaccine> vaccines = iVaccineService.findByAnimalId(animalId);
         if (vaccines.isEmpty()) {
             throw new NotFoundException("No vaccines found for animal with ID: " + animalId);
         }
-            // Initialize list for VaccineResponse
-            List<VaccineResponse> vaccineResponses = new ArrayList<>();
+        // Initialize list for VaccineResponse
+        List<VaccineResponse> vaccineResponses = new ArrayList<>();
 
-            // Map each Vaccine to VaccineResponse individually
-            for (Vaccine vaccine : vaccines) {
-                VaccineResponse response = iModelMapperService.forResponse().map(vaccine, VaccineResponse.class);
-                vaccineResponses.add(response);
-            }
-
-            // Return the list of VaccineResponse
-            return ResultHelper.successList(vaccineResponses);
-
-
-
-
+        for (Vaccine vaccine : vaccines) {
+            VaccineResponse response = iModelMapperService.forResponse().map(vaccine, VaccineResponse.class);
+            vaccineResponses.add(response);
+        }
+        return ResultHelper.successList(vaccineResponses);
 
 
     }
@@ -93,8 +86,8 @@ public class VaccineController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<CursorResponse<VaccineResponse>> cursor(
             @RequestParam(name = "page",required = false,defaultValue = "0") int page,
-            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize
-    ){
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize){
+
         Page<Vaccine> vaccinePage = this.iVaccineService.cursor(page,pageSize);
         Page<VaccineResponse> vaccineResponsePage = vaccinePage
                 .map(vaccine -> this.iModelMapperService.forResponse().map(vaccine,VaccineResponse.class));
