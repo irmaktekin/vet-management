@@ -44,6 +44,7 @@ public class IAppointmentManager implements IAppointmentService {
         if (existingAppointment.isPresent()) {
             throw new NotFoundException("There is already an appointment at this time.");
         }
+
         boolean isAvailable = doctorService.isDoctorAvailable(appointment.getDoctor().getId(), appointment.getAppointmentDate());
         if (!isAvailable) {
             throw new NotFoundException("The doctor is not available at this time.");

@@ -18,7 +18,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,7 +92,17 @@ public class DoctorManager implements IDoctorService {
         return doctorRepo.findByName(name).orElse(null);
     }
     public boolean isDoctorAvailable(Long doctorId, LocalDateTime appointmentDate) {
-        Optional<Appointment> existingAppointment = appointmentRepo.findByDoctorIdAndAppointmentDate(doctorId, appointmentDate);
-        return !existingAppointment.isPresent();
+        LocalDate appointmentDateFormat = appointmentDate.toLocalDate(); // Extract date part from LocalDateTime
+        Optional<Doctor> doctor = doctorRepo.findById(Math.toIntExact(doctorId));
+        if (doctor.isEmpty()) {
+            throw new NotFoundException("Doctor not found.");
+        }
+
+            List<AvailableDate> availableDates = doctor.get().getAvailableDates();
+        boolean isDateAvailable = availableDates.stream()
+                .map(AvailableDate::getAvailableDate) // Extract LocalDate from AvailableDate
+                .anyMatch(availableDate -> availableDate.isEqual(ChronoLocalDate.from(appointmentDate))); // Compare dates
+
+        return isDateAvailable;
     }
 }
