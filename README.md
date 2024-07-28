@@ -104,25 +104,17 @@ APPOINTMENT CONTROLLER
 
 -Create new appointment with a doctor id and a customer id .
 
-![image](https://github.com/user-attachments/assets/f0ab16e9-a5da-4dea-afef-a019810ad1da)
-
--Gets all appointments from a specific doctor name and between the date parameters.
-
-![image](https://github.com/user-attachments/assets/e7c821fa-97d8-408c-9324-a1f95d2ff061)
-
---Gets all appointments from a specific animal name and between the date parameters.
-
 ![image](https://github.com/user-attachments/assets/da52fcc0-40a2-4df0-af6e-eba2ee230e5f)
 
 -Delete the appointment by id.
 
 ![image](https://github.com/user-attachments/assets/59b1dec0-2360-478f-a08f-4286f0420e4d)
 
--Filter by doctor id and dates. (Criteria 20)
+-Get appointments by doctor id and dates. (Criteria 20)
 
 ![image](https://github.com/user-attachments/assets/b1260bd9-ebf3-4a71-8fe2-360eb0cd7771)
 
--Filter by animal id and dates. (Criteria 19)
+-Get appointments animal id and dates. (Criteria 19)
 
 ANIMAL CONTROLLER
 
