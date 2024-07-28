@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "380131c8-dcfe-4bfd-b927-5a34d335fc99",
+		"name": "IrmakTekin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13538165"
+	},
+	"item": [
+		{
+			"name": "doctor",
+			"item": [
+				{
+					"name": "saveDoctor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Doctor1\",\n    \"phone\": \"05432461829\",\n    \"mail\": \"mail@mail.com\",\n    \"address\": \"Address1\",\n    \"city\": \"Manisa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/doctors"
+					},
+					"response": []
+				},
+				{
+					"name": "getDoctors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/doctors?pageNumber=1&pageSize=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"doctors"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/v1/doctors/1"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteDoctor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/v1/doctors/2"
+					},
+					"response": []
+				},
+				{
+					"name": "updateDoctor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/v1/doctors/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "availabledate",
+			"item": [
+				{
+					"name": "saveAvailableDate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"availableDate\": \"2010-08-10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/availabledates"
+					},
+					"response": []
+				},
+				{
+					"name": "updateAvailableDate",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":1,\n    \"availableDate\":\"2022-10-08\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/availabledates"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/v1/availabledates/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getAvailableDates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/availabledates?page=1&pageSize=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"availabledates"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "saveCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Irmak Customer4\",\n    \"phone\": \"064274671\",\n    \"mail\": \"irmaktekin97@gmail.com\",\n    \"address\": \"address\",\n    \"city\": \"İzmir\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/customers"
+					},
+					"response": []
+				},
+				{
+					"name": "filterByName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCustomer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/v1/customers/3"
+					},
+					"response": []
+				},
+				{
+					"name": "updateCustomer",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCustomers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "It includes endpoints which is about customer specific operations."
+		},
+		{
+			"name": "appointment",
+			"item": [
+				{
+					"name": "saveAppointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"appointmentDate\": \"2020-11-10T12:05:00.000\",\n    \"customerId\": \"5\",\n    \"doctorId\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/appointments"
+					},
+					"response": []
+				},
+				{
+					"name": "getAppointments",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "updateAppointment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/v1/appointments"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAppointment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/v1/appointments/20"
+					},
+					"response": []
+				},
+				{
+					"name": "filterByDateAndName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/v1/appointments/filterbyNameAndDate"
+					},
+					"response": []
+				},
+				{
+					"name": "filterByDateAndAnimalName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "filterByAnimalIdAndDate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"animalId\": 2,\n    \"startDate\": \"2023-02-05T12:59:11.332\",\n    \"endDate\":\"202-02-05T12:59:11.332\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/appointments/filterByAnimalIdAndDate"
+					},
+					"response": []
+				},
+				{
+					"name": "filterByDoctorIdAndDate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"doctorId\": 2,\n    \"startDate\": \"2022-02-05T12:59:11.332\",\n    \"endDate\":\"2023-02-05T12:59:11.332\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/appointments/filterByDoctorIdAndDate"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "animals",
+			"item": [
+				{
+					"name": "getAnimals",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "saveAnimal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Animal1\",\n    \"species\":\"species1\",\n    \"breed\":\"breed1\",\n    \"gender\":\"female\",\n    \"colour\":\"brown\",\n    \"dateOfBirth\":\"2022-08-08\",\n    \"vaccines\":[2],\n    \"customerId\":\"3\",\n    \"doctorId\":\"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/animals"
+					},
+					"response": []
+				},
+				{
+					"name": "getByName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "findByCustomerName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAnimal",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/v1/animals"
+					},
+					"response": []
+				},
+				{
+					"name": "updateAnimal",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "http://localhost:8080/v1/animals"
+					},
+					"response": []
+				},
+				{
+					"name": "addVacineToSpecificAnimal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vaccineCode\":\"DAJDLSA2\",\n    \"vaccineName\":\"Vaccine3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/animals/1/vaccines?animalId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"animals",
+								"1",
+								"vaccines"
+							],
+							"query": [
+								{
+									"key": "animalId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByCustomerId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vaccine",
+			"item": [
+				{
+					"name": "vaccineSave",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Vaccine1\",\n    \"code\":\"VaccineCode1\",\n    \"protectionStartDate\":\"2022-10-09\",\n    \"protectionFinishDate\":\"2025-10-10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/vaccines"
+					},
+					"response": []
+				},
+				{
+					"name": "getByAnimalId",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "updateVaccine",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\":\"Updated\",\n    \"code\":\"Updated\",\n    \"protectionStartDate\": \"2024-10-10\",\n    \"protectionFinishDate\":\"2024-12-10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/v1/vaccines"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVaccine",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/v1/vaccines/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getVaccines",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "animalVaccine",
+			"item": [
+				{
+					"name": "getVaccinesExpiredSoon",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
