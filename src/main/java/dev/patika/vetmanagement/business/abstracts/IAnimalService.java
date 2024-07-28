@@ -17,6 +17,6 @@ public interface IAnimalService {
     List<Animal> findByCustomerName(String customerName);
     boolean existsById(Long animalId);
     List<Animal> findAnimalByCustomerId(Long customerId);
-
+    Optional<Animal> findById(Long id);
 
 }

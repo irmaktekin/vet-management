@@ -14,7 +14,7 @@ public class AppointmentSaveRequest {
     @NotNull
     private LocalDateTime appointmentDate;
     @NotNull
-    private Long customerId;
+    private Long animalId;
     @NotNull
     private Long doctorId;
 }

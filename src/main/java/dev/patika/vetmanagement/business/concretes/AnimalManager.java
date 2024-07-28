@@ -144,4 +144,8 @@ public class AnimalManager implements IAnimalService {
         return animalRepo.findByCustomerId(customerId);
 
     }
+    public Optional<Animal> findById(Long id) {
+        return animalRepo.findById(Math.toIntExact(id));
+    }
+
 }

@@ -8,6 +8,7 @@ import dev.patika.vetmanagement.core.utilities.Message;
 import dev.patika.vetmanagement.dao.AppointmentRepo;
 import dev.patika.vetmanagement.dao.AvailableDateRepo;
 import dev.patika.vetmanagement.dao.DoctorRepo;
+import dev.patika.vetmanagement.entities.Animal;
 import dev.patika.vetmanagement.entities.Appointment;
 import dev.patika.vetmanagement.entities.AvailableDate;
 import dev.patika.vetmanagement.entities.Doctor;
@@ -102,4 +103,12 @@ public class DoctorManager implements IDoctorService {
 
         return isDateAvailable;
     }
+
+    @Override
+    public Optional<Doctor> findById(Long id) {
+        return doctorRepo.findById(id);
+
+    }
+
+
 }

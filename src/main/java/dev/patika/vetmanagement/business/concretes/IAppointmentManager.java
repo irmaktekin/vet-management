@@ -32,6 +32,9 @@ public class IAppointmentManager implements IAppointmentService {
 
     @Override
     public Appointment save(Appointment appointment) {
+        if(appointment.getAnimal()== null){
+            throw new NotFoundException("Animal with ID" + appointment.getAnimal().getId()+ "not found");
+        }
         if (!AppointmentTimeValidator.isHourAligned(appointment.getAppointmentDate())) {
             throw new NotFoundException("Appointment time must be at the start of the hour.");
         }
@@ -54,8 +57,26 @@ public class IAppointmentManager implements IAppointmentService {
 
     @Override
     public Appointment update(Appointment appointment) {
+
         Appointment existAppointment = appointmentRepo.findById(Math.toIntExact(appointment.getId()))
                 .orElseThrow(() -> new NotFoundException("Appointment with ID " + appointment.getId() + " does not exist"));
+
+        if (!AppointmentTimeValidator.isHourAligned(appointment.getAppointmentDate())) {
+            throw new NotFoundException("Appointment time must be at the start of the hour.");
+        }
+
+        // Check if an appointment exists for the given doctor at the given time
+        Optional<Appointment> existingAppointment = appointmentRepo
+                .findByDoctorIdAndAppointmentDate(appointment.getDoctor().getId(), appointment.getAppointmentDate());
+
+        if (existingAppointment.isPresent()) {
+            throw new NotFoundException("There is already an appointment at this time.");
+        }
+
+        boolean isAvailable = doctorService.isDoctorAvailable(appointment.getDoctor().getId(), appointment.getAppointmentDate());
+        if (!isAvailable) {
+            throw new NotFoundException("The doctor is not available at this time.");
+        }
 
         this.get(appointment.getId());
         return this.appointmentRepo.save(appointment);
@@ -123,4 +144,5 @@ public class IAppointmentManager implements IAppointmentService {
         }
         return appointments;
     }
+
 }

@@ -30,5 +30,4 @@ public class AnimalSaveRequest {
     private LocalDate dateOfBirth;
     private Set<Long> vaccines = new HashSet<>();
     private Long customerId;
-    private Long doctorId;
 }

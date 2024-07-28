@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppointmentUpdateRequest {
-    @NotNull
+    @NotNull(message = "ID must not be null")
     private Long id;
-    @NotNull
+    @NotNull(message = "Date must not be null")
     private LocalDateTime appointmentDate;
-    @NotNull
-    private Long customerId;
-    @NotNull
+    @NotNull(message = "Animal ID must not be null")
+    private Long animalId;
+    @NotNull(message = "Doctor ID must not be null")
     private Long doctorId;
 }

@@ -1,5 +1,6 @@
 package dev.patika.vetmanagement.business.abstracts;
 
+import dev.patika.vetmanagement.entities.Animal;
 import dev.patika.vetmanagement.entities.AvailableDate;
 import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.domain.Page;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.Page;
 import javax.print.Doc;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface IDoctorService {
     Doctor save(Doctor doctor);
@@ -16,7 +18,7 @@ public interface IDoctorService {
     boolean delete(int id);
     Doctor getDoctorByName(String name);
     boolean isDoctorAvailable(Long doctorId, LocalDateTime appointmentDate);
-
+    Optional<Doctor> findById(Long id);
 
 
 }

@@ -24,8 +24,8 @@ public class Appointment {
     private LocalDateTime appointmentDate;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch =FetchType.EAGER)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id", nullable = false)

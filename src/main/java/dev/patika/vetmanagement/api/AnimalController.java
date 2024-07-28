@@ -64,9 +64,7 @@ public class AnimalController {
     public ResultData<AnimalResponse> save(@Valid @RequestBody AnimalSaveRequest animalSaveRequest) {
 
         Animal animal = this.iModelMapperService.forRequest().map(animalSaveRequest, Animal.class);
-        Doctor doctor = this.iDoctorService.get(animalSaveRequest.getDoctorId());
         Customer customer = this.iCustomerService.get(animalSaveRequest.getCustomerId());
-        animal.setDoctor(doctor);
         animal.setCustomer(customer);
 
         Set<Vaccine> vaccines = new HashSet<>();

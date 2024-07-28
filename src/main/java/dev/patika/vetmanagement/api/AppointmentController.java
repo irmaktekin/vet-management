@@ -22,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -47,10 +48,21 @@ public class AppointmentController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<AppointmentResponse> save(@Valid @RequestBody AppointmentSaveRequest appointmentSaveRequest) throws Exception {
         Appointment appointment = this.iModelMapperService.forRequest().map(appointmentSaveRequest,Appointment.class);
-        Customer customer = iCustomerService.get(appointmentSaveRequest.getCustomerId());
-        Doctor doctor = iDoctorService.get(appointmentSaveRequest.getDoctorId());
 
-        appointment.setCustomer(customer);
+        Optional<Animal> optionalAnimal = iAnimalService.findById(appointmentSaveRequest.getAnimalId());
+        if (!optionalAnimal.isPresent()) {
+            throw new NotFoundException("Animal not found with ID: " + appointmentSaveRequest.getAnimalId());
+        }
+        Animal animal = optionalAnimal.get();
+
+        // Check if Doctor exists
+        Optional<Doctor> optionalDoctor = iDoctorService.findById(appointmentSaveRequest.getDoctorId());
+        if (!optionalDoctor.isPresent()) {
+            throw new NotFoundException("Doctor not found with ID: " + appointmentSaveRequest.getDoctorId());
+        }
+        Doctor doctor = optionalDoctor.get();
+
+        appointment.setAnimal(animal);
         appointment.setDoctor(doctor);
         appointment.setAppointmentDate(appointmentSaveRequest.getAppointmentDate());
         this.iAppointmentService.save(appointment);
@@ -77,10 +89,10 @@ public class AppointmentController {
 
         Appointment appointment = iModelMapperService.forRequest().map(appointmentUpdateRequest, Appointment.class);
         Doctor doctor = iDoctorService.get(appointmentUpdateRequest.getDoctorId());
-        Customer customer = iCustomerService.get(appointmentUpdateRequest.getCustomerId());
+        Animal animal = iAnimalService.get(appointmentUpdateRequest.getAnimalId());
 
         appointment.setDoctor(doctor);
-        appointment.setCustomer(customer);
+        appointment.setAnimal(animal);
 
         Appointment updatedAppointment = iAppointmentService.update(appointment);
 

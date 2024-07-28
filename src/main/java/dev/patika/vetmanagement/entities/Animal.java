@@ -51,7 +51,8 @@ public class Animal {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Appointment> appointments = new HashSet<>();
 
 
 

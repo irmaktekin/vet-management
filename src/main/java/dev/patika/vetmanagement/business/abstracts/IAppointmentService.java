@@ -1,13 +1,11 @@
 package dev.patika.vetmanagement.business.abstracts;
-import dev.patika.vetmanagement.entities.Appointment;
-import dev.patika.vetmanagement.entities.AvailableDate;
-import dev.patika.vetmanagement.entities.Customer;
-import dev.patika.vetmanagement.entities.Doctor;
+import dev.patika.vetmanagement.entities.*;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface IAppointmentService {
     Appointment save(Appointment appointment);
