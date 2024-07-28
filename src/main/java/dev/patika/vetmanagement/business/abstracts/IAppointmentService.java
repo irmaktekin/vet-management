@@ -5,6 +5,7 @@ import dev.patika.vetmanagement.entities.Customer;
 import dev.patika.vetmanagement.entities.Doctor;
 import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public interface IAppointmentService {
     List<Appointment> findAppointmentsByDoctorAndDateRange(String doctorName, LocalDateTime startDate, LocalDateTime endDate);
     List<Appointment> findAppointmentsByAnimalAndDateRange(String animalName, LocalDateTime startDate, LocalDateTime endDate);
     void deleteByDoctorId(int doctorId);
-
+    List<Appointment> findAppointmentsByAnimalIdAndDateRange(Long animalId, LocalDateTime startDate, LocalDateTime endDate);
+    List<Appointment> getAppointmentsByDoctorAndDateRange(Long doctorId, LocalDateTime startDate, LocalDateTime endDate);
 }
 

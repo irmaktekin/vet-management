@@ -5,13 +5,11 @@ import dev.patika.vetmanagement.business.abstracts.IAppointmentService;
 import dev.patika.vetmanagement.business.abstracts.ICustomerService;
 import dev.patika.vetmanagement.business.abstracts.IDoctorService;
 import dev.patika.vetmanagement.core.config.ModelMapper.IModelMapperService;
+import dev.patika.vetmanagement.core.exception.NotFoundException;
 import dev.patika.vetmanagement.core.result.Result;
 import dev.patika.vetmanagement.core.result.ResultData;
 import dev.patika.vetmanagement.core.utilities.ResultHelper;
-import dev.patika.vetmanagement.dto.request.appointment.AppointmentFilterByAnimalRequest;
-import dev.patika.vetmanagement.dto.request.appointment.AppointmentFilterRequest;
-import dev.patika.vetmanagement.dto.request.appointment.AppointmentSaveRequest;
-import dev.patika.vetmanagement.dto.request.appointment.AppointmentUpdateRequest;
+import dev.patika.vetmanagement.dto.request.appointment.*;
 import dev.patika.vetmanagement.dto.response.CursorResponse;
 import dev.patika.vetmanagement.dto.response.appointment.AppointmentResponse;
 import dev.patika.vetmanagement.entities.Animal;
@@ -114,6 +112,7 @@ public class AppointmentController {
         return ResultHelper.successList(appointments);
 
     }
+    //Filter by dates and animal name
     @GetMapping("/filterbyAnimalNameAndDate")
     public ResultData<List<AppointmentResponse>> getAppointmentsByAnimalName(@RequestBody AppointmentFilterByAnimalRequest appointmentFilterByAnimalRequest){
         List <Animal> animal = iAnimalService.findByName(appointmentFilterByAnimalRequest.getAnimalName());
@@ -130,5 +129,43 @@ public class AppointmentController {
 
         return ResultHelper.successList(appointments);
 
+    }
+
+    //Filterby animal id and dates
+    @GetMapping("/filterByAnimalIdAndDate")
+    public ResultData<List<AppointmentResponse>> getAppointmentsByAnimalIdAndDate(
+            @RequestBody FilterRequestByAnımalId filterRequestByAnımalId  ) {
+
+        // Check if the animal exists
+        Animal animal = iAnimalService.get(filterRequestByAnımalId.getAnimalId());
+        if (animal == null) {
+            throw new NotFoundException("No animal found");
+        }
+
+        // Fetch the appointments
+        List<Appointment> appointmentList = iAppointmentService.findAppointmentsByAnimalIdAndDateRange(animal.getId(),filterRequestByAnımalId.getStartDate(), filterRequestByAnımalId.getEndDate());
+
+        // Map each appointment to AppointmentResponse
+        List<AppointmentResponse> appointments = appointmentList.stream()
+                .map(appointment -> iModelMapperService.forResponse().map(appointment, AppointmentResponse.class))
+                .collect(Collectors.toList());
+
+        return ResultHelper.successList(appointments);
+    }
+
+    //filter by doctor Id and date
+    @GetMapping("/filterByDoctorIdAndDate")
+    public ResultData<List<AppointmentResponse>> getAppointmentsByDoctorAndDate(@RequestBody FilterRequestByDoctorId filterRequest) {
+        List<Appointment> appointments = iAppointmentService.getAppointmentsByDoctorAndDateRange(
+                filterRequest.getDoctorId(),
+                filterRequest.getStartDate(),
+                filterRequest.getEndDate()
+        );
+
+        List<AppointmentResponse> appointmentResponses = appointments.stream()
+                .map(appointment -> iModelMapperService.forResponse().map(appointment, AppointmentResponse.class))
+                .collect(Collectors.toList());
+
+        return ResultHelper.successList(appointmentResponses);
     }
 }

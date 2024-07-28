@@ -109,5 +109,18 @@ public class IAppointmentManager implements IAppointmentService {
     public void deleteByDoctorId(int doctorId) {
         appointmentRepo.deleteByDoctorId(doctorId);
     }
+    public List<Appointment> findAppointmentsByAnimalIdAndDateRange(Long animalId, LocalDateTime startDate, LocalDateTime endDate) {
+        List <Appointment> appointments = appointmentRepo.findAppointmentsByAnimalAndDateRange(animalId,startDate,endDate);
+        if (appointments.isEmpty()) {
+            throw new NotFoundException("No appointments found for animal with ID " + animalId + " between " + startDate + " and " + endDate);
+        }
+        return appointments;    }
+    public List<Appointment> getAppointmentsByDoctorAndDateRange(Long doctorId, LocalDateTime startDate, LocalDateTime endDate) {
 
+        List<Appointment> appointments = appointmentRepo.findAppointmentsByDoctorAndDateRange(doctorId, startDate, endDate);
+        if (appointments.isEmpty()) {
+            throw new NotFoundException("No appointments found for doctor with ID " + doctorId + " between " + startDate + " and " + endDate);
+        }
+        return appointments;
+    }
 }
